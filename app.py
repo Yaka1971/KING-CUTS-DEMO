@@ -25,7 +25,9 @@ header{position:fixed;top:0;left:0;width:100%;height:82px;z-index:1000;display:f
 .logo-main span{color:var(--gold-light)}
 .logo-sub{display:flex;align-items:center;gap:8px;color:var(--gold-light);font-family:"Cinzel",Georgia,serif;font-size:7px;font-weight:600;letter-spacing:5px;margin-top:6px}
 .logo-sub:before,.logo-sub:after{content:"";display:block;width:22px;height:1px;background:var(--gold)}
-nav{display:flex;gap:27px}nav a{font-size:11px;font-weight:700;letter-spacing:1px}.sound-button{border:1px solid var(--gold);background:#000;color:var(--gold-light);padding:11px 16px;border-radius:50px;font-size:10px;font-weight:800;cursor:pointer}.sound-button.active{background:var(--gold);color:#000}
+nav{display:flex;gap:27px}nav a{font-size:11px;font-weight:700;letter-spacing:1px}
+.menu-button{display:none;border:1px solid var(--gold);background:#000;color:var(--gold-light);width:44px;height:42px;font-size:23px;cursor:pointer;align-items:center;justify-content:center}
+.sound-button{border:1px solid var(--gold);background:#000;color:var(--gold-light);padding:11px 16px;border-radius:50px;font-size:10px;font-weight:800;cursor:pointer}.sound-button.active{background:var(--gold);color:#000}
 .hero{min-height:700px;padding:0;display:block;position:relative;background:#050505;overflow:hidden}
 .hero-copy{position:absolute;z-index:5;left:6%;top:50%;transform:translateY(-50%);max-width:600px;padding:32px;background:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.45),transparent);text-shadow:0 3px 20px #000}
 .eyebrow{color:var(--gold-light);font-size:11px;font-weight:700;letter-spacing:5px;margin-bottom:18px}
@@ -74,15 +76,24 @@ nav{display:flex;gap:27px}nav a{font-size:11px;font-weight:700;letter-spacing:1p
 .booking-success strong{display:block;color:var(--gold-light);font-family:"Cinzel",Georgia,serif;font-size:22px;margin-bottom:8px}
 .booking-success span{color:#bbb;font-size:13px}
 
-footer{padding:45px 6%;display:flex;justify-content:space-between;gap:25px;background:#030303;border-top:1px solid #493719;color:#777;font-size:10px}.footer-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:190px;line-height:1}
+footer{padding:45px 6%;display:flex;justify-content:space-between;gap:25px;background:#030303;border-top:1px solid #493719;color:#777;font-size:10px}.mobile-sound-dock{display:none;background:#030303;padding:0 14px 10px;justify-content:flex-end}.footer-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:190px;line-height:1}
 .footer-brand .logo-crown{color:var(--gold-light);font-size:25px;line-height:.7;margin-bottom:5px;text-shadow:0 0 12px rgba(216,165,60,.25)}
 .footer-brand .logo-main{font-family:"Cinzel",Georgia,serif;font-size:22px;font-weight:700;letter-spacing:.4px;color:var(--gold-light);white-space:nowrap}
 .footer-brand .logo-sub{display:flex;align-items:center;gap:8px;color:var(--gold-light);font-family:"Cinzel",Georgia,serif;font-size:7px;font-weight:600;letter-spacing:5px;margin-top:6px}
 .footer-brand .logo-sub:before,.footer-brand .logo-sub:after{content:"";display:block;width:22px;height:1px;background:var(--gold)}
-@media(max-width:1000px){nav{display:none}.hero{grid-template-columns:1fr}.service-grid{grid-template-columns:repeat(3,1fr)}.mission{grid-template-columns:1fr}}
+@media(max-width:1000px){
+nav{display:none;position:absolute;top:82px;left:0;width:100%;padding:18px 5%;background:rgba(4,4,4,.98);border-bottom:1px solid rgba(216,165,60,.35);flex-direction:column;gap:0}
+nav.open{display:flex}
+nav a{width:100%;padding:15px 4px;border-bottom:1px solid rgba(216,165,60,.18)}
+.menu-button{display:flex}
+.sound-button{box-shadow:0 8px 28px rgba(0,0,0,.65)}
+.hero{grid-template-columns:1fr}.service-grid{grid-template-columns:repeat(3,1fr)}.mission{grid-template-columns:1fr}
+}
 @media(max-width:650px){
 header{height:70px;padding:0 18px}
+nav{top:70px;padding:14px 18px}
 .sound-button{font-size:8px}
+.menu-button{width:42px;height:40px;font-size:22px}
 .hero{min-height:860px;padding:0}
 .hero-visual{height:860px}
 .hero-copy{left:6%;right:6%;top:42%;max-width:none;padding:22px 18px;transform:translateY(-50%);background:linear-gradient(90deg,rgba(0,0,0,.84),rgba(0,0,0,.36),transparent)}
@@ -99,13 +110,13 @@ header{height:70px;padding:0 18px}
 .booking{padding:70px 18px}
 .booking-form{grid-template-columns:1fr;padding:24px 18px}
 .form-group.full,.booking-submit,.booking-success{grid-column:1}
-footer{flex-direction:column;text-align:center}
+footer{flex-direction:column;text-align:center}.mobile-sound-dock{display:flex}
 }
 </style>
 </head>
 <body>
 <audio id="shopBeat" src="/audio/king_cuts_audio.wav" preload="auto" loop></audio>
-<header><a class="logo" href="#home"><div class="logo-crown">♛</div><div class="logo-main">KING’S CUTS</div><div class="logo-sub">BARBERSHOP</div></a><nav><a href="#home">HOME</a><a href="#cuts">THE CUTS</a><a href="#services">SERVICES</a><a href="#mission">OUR STORY</a><a href="#booking">BOOK</a><a href="#contact">CONTACT</a></nav><button id="soundButton" class="sound-button">🔊 CLICK FOR SOUND</button></header>
+<header><a class="logo" href="#home"><div class="logo-crown">♛</div><div class="logo-main">KING’S CUTS</div><div class="logo-sub">BARBERSHOP</div></a><nav><a href="#home">HOME</a><a href="#cuts">THE CUTS</a><a href="#services">SERVICES</a><a href="#mission">OUR STORY</a><a href="#booking">BOOK</a><a href="/demo-contact">CONTACT</a></nav><button id="menuButton" class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">☰</button><button id="soundButton" class="sound-button">🔊 CLICK FOR SOUND</button></header>
 <section class="hero" id="home"><div class="hero-copy"><div class="eyebrow">CLEAN CUTS • CONFIDENT MEN • STRONGER COMMUNITIES</div><h1>MORE THAN<span class="gold">A HAIRCUT</span></h1><p class="hero-description">Precision barbering for every generation. Clean lines, sharp fades, healthy hair and the confidence that comes with looking your best.</p><div class="hero-buttons"><a class="btn btn-gold" href="#booking">BOOK AN APPOINTMENT →</a><a class="btn btn-dark" href="#cuts">SEE THE CUTS →</a></div></div><div class="hero-visual"><img src="/images/kc_hero.png" alt="King's Cuts barber at work"><div class="hero-stamp"><strong>A HIGHER STANDARD</strong><span>PRECISION • CONFIDENCE • COMMUNITY</span></div></div></section>
 <section class="cuts-section" id="cuts"><div class="cuts-header"><small>DIFFERENT STYLES • SAME CONFIDENCE</small><h2>THE CUTS</h2></div><div class="gold-flash" id="goldFlash"></div><div class="cut-stage">
 <article class="cut-slide"><img src="/images/image_01.png" alt="King\'s Cuts hairstyle 01"></article>
@@ -185,17 +196,47 @@ footer{flex-direction:column;text-align:center}
       </div>
       <button class="booking-submit" type="submit">REQUEST APPOINTMENT →</button>
       <div class="booking-success" id="bookingSuccess">
-        <strong>APPOINTMENT REQUEST RECEIVED</strong>
-        <span>Thank you for choosing KING’S CUTS. We’ll contact you to confirm your appointment.</span>
+        <strong>BOOKING DEMONSTRATION COMPLETE</strong>
+        <span>This is a portfolio demo, so no real appointment was submitted. On a live client website, this request would be sent to the barbershop’s real booking system or business inbox.</span>
       </div>
     </form>
   </div>
 </section>
 
-<footer id="contact"><div class="footer-brand"><div class="logo-crown">♛</div><div class="logo-main">KING’S CUTS</div><div class="logo-sub">BARBERSHOP</div></div><div>DEMO BARBERSHOP EXPERIENCE</div><div>POWERED BY MAYAKA'AL DIGITAL.</div></footer>
+<footer id="contact"><div class="footer-brand"><div class="logo-crown">♛</div><div class="logo-main">KING’S CUTS</div><div class="logo-sub">BARBERSHOP</div></div><div>DEMO BARBERSHOP EXPERIENCE</div><div>POWERED BY MAYAKA'AL DIGITAL.</div></footer><div id="mobileSoundDock" class="mobile-sound-dock"></div>
 <script>
 const beat = document.getElementById("shopBeat");
 const soundButton = document.getElementById("soundButton");
+const menuButton = document.getElementById("menuButton");
+const mainNav = document.querySelector("header nav");
+
+menuButton.addEventListener("click", () => {
+    const isOpen = mainNav.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    menuButton.innerHTML = isOpen ? "✕" : "☰";
+});
+
+mainNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        mainNav.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.innerHTML = "☰";
+    });
+});
+
+const mobileSoundDock = document.getElementById("mobileSoundDock");
+const desktopSoundParent = soundButton.parentElement;
+
+function placeSoundButton() {
+    if (window.innerWidth <= 1000) {
+        if (soundButton.parentElement !== mobileSoundDock) mobileSoundDock.appendChild(soundButton);
+    } else {
+        if (soundButton.parentElement !== desktopSoundParent) desktopSoundParent.appendChild(soundButton);
+    }
+}
+placeSoundButton();
+window.addEventListener("resize", placeSoundButton);
+
 beat.volume = .55;
 
 soundButton.addEventListener("click", async () => {
@@ -297,6 +338,47 @@ setInterval(showNextCard, STEP_TIME);
 @app.route("/")
 def home():
     return render_template_string(PAGE)
+
+
+DEMO_PAGE = r"""<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KING'S CUTS | Contact Demo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap');
+:root{--black:#050505;--gold:#d8a53c;--gold-light:#ffd777;--white:#f7f7f7}
+*{box-sizing:border-box}body{margin:0;background:#050505;color:var(--white);font-family:Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+.top{min-height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:#040404;border-bottom:1px solid rgba(216,165,60,.35)}
+.brand{font-family:"Cinzel",Georgia,serif;color:var(--gold-light);font-size:22px;font-weight:700}
+.back{border:1px solid var(--gold);padding:12px 16px;font-size:10px;font-weight:800;color:var(--gold-light)}
+.wrap{min-height:calc(100vh - 82px);display:grid;place-items:center;padding:45px 20px;background:radial-gradient(circle at 50% 30%,rgba(216,165,60,.12),transparent 38%),#050505}
+.card{width:min(850px,100%);padding:clamp(30px,6vw,65px);border:1px solid rgba(216,165,60,.45);background:#090909;box-shadow:0 25px 70px #000}
+.kicker{color:var(--gold);font-size:10px;font-weight:800;letter-spacing:5px}
+h1{font-family:"Cinzel",Georgia,serif;font-size:clamp(40px,7vw,72px);line-height:.95;margin:12px 0 24px}h1 span{color:var(--gold-light)}
+p{color:#bbb;line-height:1.8;font-size:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+.block{padding:24px;border-top:1px solid var(--gold);background:#050505}.block h2{font-family:"Cinzel",Georgia,serif;color:var(--gold-light);font-size:18px}.block p{font-size:14px}
+.note{margin-top:28px;padding:22px;border-left:3px solid var(--gold);background:rgba(216,165,60,.07)}.note strong{color:var(--gold-light)}
+.action{display:inline-block;margin-top:28px;padding:15px 22px;background:var(--gold);color:#050505;font-size:11px;font-weight:900}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.top{padding:0 18px}.card{padding:30px 22px}}
+</style></head><body>
+<header class="top"><a class="brand" href="/">♛ KING’S CUTS</a><a class="back" href="/">BACK TO SITE</a></header>
+<main class="wrap"><section class="card">
+<div class="kicker">MAYAKA'AL DIGITAL PORTFOLIO DEMO</div>
+<h1>CONTACT <span>DEMONSTRATION</span></h1>
+<p>This page demonstrates where a real KING’S CUTS barbershop website would connect customers with the business. Because KING’S CUTS is a portfolio demonstration brand, no fake telephone number, email address, location, or social profile is presented as though it belongs to a real operating shop.</p>
+<div class="grid">
+<div class="block"><h2>REAL CLIENT CONTACT</h2><p>A live client version can display the barbershop’s verified phone number, email address, physical location, business hours, and preferred customer-contact channels.</p></div>
+<div class="block"><h2>WORKING INQUIRIES</h2><p>The website can also connect a contact form to the client’s real business inbox for questions, group requests, service inquiries, and customer support.</p></div>
+</div>
+<div class="note"><strong>DEMO MODE</strong><p>The purpose here is to demonstrate the customer journey without inventing real-world business information for a fictional portfolio brand.</p></div>
+<a class="action" href="/">RETURN TO KING’S CUTS</a>
+</section></main></body></html>"""
+
+@app.route("/demo-contact")
+def demo_contact():
+    return render_template_string(DEMO_PAGE)
 
 @app.route("/images/<path:filename>")
 def images(filename):
